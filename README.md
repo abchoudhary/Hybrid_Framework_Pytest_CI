@@ -3,15 +3,16 @@
 
 **Setup:**
 1. Create batch files:
-   * "Install_Library.bat" - To install required libraries
-   * "Run.bat" - To execute the test cases
+   * **Install_Library.bat:** To install the required libraries
+   * **Run.bat:** To execute the test cases
     
 
 2. Push code to remote repository
+   * Add a .gitkeep file in empty folders like Logs, Reports and Screenshots to push them to remote repository
    
 
 3. Setup Java
-   * Download and install java jdk supported by jenkins. Add jdk and bin path to environment variables
+   * Download and install java jdk supported by jenkins. Add jdk and bin path to system environment variables
     
 
 4. Download Jenkins War & Setup Jenkins
@@ -22,50 +23,45 @@
    
 
 5. Configure paths on jenkins
-   * Configure Java path : Manage Jenkins -> Global Tool Configuration -> JDK
-   * Configure GIT path : Manage Jenkins -> Global Tool Configuration -> Git
-   * Configure Python path : Manage Jenkins -> Configure System -> Global Properties -> Environment Variable -> add python home and python scripts path
-   * Setup Allure reporting : Manage Jenkins -> Manage Plugins -> Search and Install Allure Plugin
-   * Allure command line tool: Download allure command line tool zip file and extract it, In Jenkins goto Manage Jenkins -> Global Tool Configuration -> Allure Commandline and provide the path
+   * Configure Java path:
+     
+     ```Manage Jenkins --> Global Tool Configuration --> JDK --> Add path of JAVA_HOME```
+   * Configure GIT path:
+     
+     ```Manage Jenkins --> Global Tool Configuration --> Git --> Add path of git.exe file```
+   * Configure Python path:
+     
+     ```Manage Jenkins --> Configure System --> Global Properties --> Environment Variables --> Add Python_Home and Python_Scripts path```
+   * Setup Allure reporting :
+     
+     ```Manage Jenkins --> Manage Plugins --> Search and Install Allure Plugin```
+   * Allure command line tool:
+     
+     ```Manage Jenkins --> Global Tool Configuration --> Allure Commandline --> Install automatically from maven or install locally using npm (Java 8+ & nodejs required) and provide path```
+
 
 6. Configure and execution on jenkins
    * Create a new freestyle project
-   * Provide GitHub repository url in source code management
-   * Set Environment variable : Build -> Execute windows batch command -> set Path=%Python_Home%;%Path%
-   * Run batch file to install libraries -> Install_Libraries.bat
-   * Run project using pytest: Build -> Execute windows batch command -> Run.bat (the bat file has the pytest execution command)
-   Note: In order to push the empty folders like Logs, Reports and Screenshots to remote repository, add a .gitkeep file
+   * Provide GitHub repository URL in Source Code Management
+   * Set Environment variable:
+     
+     Configure --> Build --> Execute windows batch command
+     ```
+     set Path=%Python_Home%;%Path%
+     rmdir /s /q Reports
+     rmdir /s /q allure-report
+     Install_Libraries.bat
+     
+     ```
+   * Run project using pytest:
+     
+      Configure --> Build --> Execute windows batch command --> Run.bat (This file contains pytest commands for execution)
 
 
 7. Integrating Allure reporting:
-   * give pytest command to run allure reports: pytest -v --alluredir=./Reports testCases\ --browser chrome
-   * In Jenkins, configure your project and select allure report in post-build actions
-   * Provide path of folder where json files are generated for allure
-   * 
    
-**Folder Structure:**
-```
-Project
-├── Configurations
-│   ├── config.ini (to store common info like application URL)
-|
-├── pageObjects(package)
-|   ├── page_object_file.py (contains webelements, getter and setter methods)
-|
-├── testCases(package)
-|   ├── conftest.py (contains pytest fixtures for browser and reports etc.)
-|   ├── pytest.ini (to store custom pytest markers)
-|   ├── test_filename.py (contains test methods)
-|    
-├── utilities(package)
-|   ├── custom_logger.py (contains logging setup)
-|   ├── read_properties.py (to read data from config.ini by using configparser)
-|   ├── excelUtils.py (to read test data from excel file for data driven testing) 
-|
-├── Logs
-├── Reports
-├── Screenshots
-├── TestData
-├── README.md
-└── Run.bat (To execute test cases)
-```
+   ```Configure --> Post-build Actions --> Allure Report --> Path of folder where json results are generated```
+   
+
+   * Add the below line in pytest command for allure reports:
+     ```--alluredir=./Reports```
