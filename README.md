@@ -2,10 +2,21 @@
 ### A hybrid framework setup in Selenium with Python implemented using pytest and continuous integration using GitHub and Jenkins
 
 **Setup:**
-1. Create a batch file
+1. Create batch files:
+   * "Install_Library.bat" - To install required libraries
+   * "Run.bat" - To execute the test cases
+    
+
 2. Push code to remote repository
+   
+
 3. Setup Java
+   * Download and install java jdk supported by jenkins. Add jdk and bin path to environment variables
+    
+
 4. Download Jenkins War & Setup Jenkins
+   * Download jenkins.war file and install using ``` java -jar jenkins.war ```
+   * Create admin
 5. Configure paths on jenkins
 6. Setup Allure reporting options
 
