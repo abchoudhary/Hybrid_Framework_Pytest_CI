@@ -34,6 +34,10 @@
    * Set Environment variable : Build -> Execute windows batch command -> set Path=%Python_Home%;%Path%
    * Run batch file to install libraries -> Install_Libraries.bat
    * Run test cases using pytest: Build -> Execute windows batch command -> Run.bat (the bat file has the pytest execution command)
+   Note: In order to push the empty folders like Logs, Reports and Screenshots to remote repository, add a .gitkeep file
+
+
+7. Generating Allure reports
 
 **Folder Structure:**
 ```
