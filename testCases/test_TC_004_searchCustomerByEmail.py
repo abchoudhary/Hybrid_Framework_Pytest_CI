@@ -7,7 +7,7 @@ from utilities.customLogger import LogGeneration
 import time
 
 
-class Test005SearchCustomerByName:
+class Test004SearchCustomerByEmail:
     baseURL = ReadConfig.get_application_url()
     username = ReadConfig.get_username()
     password = ReadConfig.get_password()
@@ -15,8 +15,8 @@ class Test005SearchCustomerByName:
     logger = LogGeneration.log_generation()
 
     @pytest.mark.regression
-    def test_search_customer_by_name(self, setup):
-        self.logger.info("************* Test_004_SearchCustomerByName *************")
+    def test_search_customer_by_email(self, setup):
+        self.logger.info("************* Test_004_SearchCustomerByEmail *************")
         self.driver = setup
         self.driver.maximize_window()
         self.driver.get(self.baseURL)
@@ -34,13 +34,11 @@ class Test005SearchCustomerByName:
         time.sleep(2)
         self.customer_page.click_customer()
 
-        self.logger.info("Searching customer by name")
+        self.logger.info("Searching customer by email")
         self.search_customer = SearchCustomer(self.driver)
-        self.search_customer.set_first_name('John')
-        self.search_customer.set_last_name('Smith')
+        self.search_customer.set_search_email('admin@yourStore.com')
         self.search_customer.click_search()
         time.sleep(3)
-        status = self.search_customer.search_customer_by_name('John Smith')
+        status = self.search_customer.search_customer_by_email('admin@yourStore.com')
         assert True == status
-        self.logger.info("Test_005_SearchCustomerByName finished")
-        self.driver.close()
+        self.logger.info("Test_004_SearchCustomerByEmail finished")

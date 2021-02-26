@@ -22,12 +22,10 @@ class Test001Login:
         actual_title = self.driver.title
         if actual_title == "Your store. Login":
             self.logger.info("Home page title test is passed")
-            self.driver.close()
             assert True
         else:
             self.logger.error("Home page title test is failed")
-            self.driver.save_screenshot(".\\Screenshots\\test_homepage_title.png")
-            self.driver.close()
+            self.driver.save_screenshot("./Screenshots/test_homepage_title.png")
             assert False
 
     @pytest.mark.sanity
@@ -46,10 +44,8 @@ class Test001Login:
         actual_title = self.driver.title
         if actual_title == "Dashboard / nopCommerce administration":
             self.logger.info("Login test is passed")
-            self.driver.close()
             assert True
         else:
             self.logger.error("Login test is failed")
-            self.driver.save_screenshot(".\\Screenshots\\test_login.png")
-            self.driver.close()
+            self.driver.save_screenshot("./Screenshots/test_login.png")
             assert False

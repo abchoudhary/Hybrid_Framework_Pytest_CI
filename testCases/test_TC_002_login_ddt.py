@@ -61,11 +61,9 @@ class Test002DataDrivenLogin:
 
         if "Fail" not in status_list:
             self.logger.info("Data driven login test passed")
-            self.driver.close()
             assert True
         else:
             self.logger.info("Data driven login test failed")
-            self.driver.close()
             assert False
 
         self.logger.info("*** End of Login DDT test ***")

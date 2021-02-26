@@ -16,9 +16,24 @@
 
 4. Download Jenkins War & Setup Jenkins
    * Download jenkins.war file and install using ``` java -jar jenkins.war ```
-   * Create admin
+   * Unlock jenkins using administrator password
+   * Install suggested plugins
+   * Create first admin user and start
+   
+
 5. Configure paths on jenkins
-6. Setup Allure reporting options
+   * Configure Java path : Manage Jenkins -> Global Tool Configuration -> JDK
+   * Configure GIT path : Manage Jenkins -> Global Tool Configuration -> Git
+   * Configure Python path : Manage Jenkins -> Configure System -> Global Properties -> Environment Variable -> add python home and python scripts path
+   * Setup Allure reporting : Manage Jenkins -> Manage Plugins -> Search and Install Allure Plugin
+   * Allure command line tool: Download allure command line tool zip file and extract it, In Jenkins goto Manage Jenkins -> Global Tool Configuration -> Allure Commandline and provide the path
+
+6. Configure and execution on jenkins
+   * Create a new freestyle project
+   * Provide GitHub repository url in source code management
+   * Set Environment variable : Build -> Execute windows batch command -> set Path=%Python_Home%;%Path%
+   * Run batch file to install libraries -> Install_Libraries.bat
+   * Run test cases using pytest: Build -> Execute windows batch command -> Run.bat (the bat file has the pytest execution command)
 
 **Folder Structure:**
 ```

@@ -62,11 +62,9 @@ class Test003AddCustomer:
             assert True
             self.logger.info("Add customer test passed")
         else:
-            self.driver.save_screenshot(".\\Screenshots\\test_add_customer.png")
+            self.driver.save_screenshot("./Screenshots/test_add_customer.png")
             self.logger.error("Add customer test case failed")
             assert False
-
-        self.driver.close()
 
 
 def random_generator(size=8, chars=string.ascii_lowercase + string.digits):
