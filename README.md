@@ -33,12 +33,16 @@
    * Provide GitHub repository url in source code management
    * Set Environment variable : Build -> Execute windows batch command -> set Path=%Python_Home%;%Path%
    * Run batch file to install libraries -> Install_Libraries.bat
-   * Run test cases using pytest: Build -> Execute windows batch command -> Run.bat (the bat file has the pytest execution command)
+   * Run project using pytest: Build -> Execute windows batch command -> Run.bat (the bat file has the pytest execution command)
    Note: In order to push the empty folders like Logs, Reports and Screenshots to remote repository, add a .gitkeep file
 
 
-7. Generating Allure reports
-
+7. Integrating Allure reporting:
+   * give pytest command to run allure reports: pytest -v --alluredir=./Reports testCases\ --browser chrome
+   * In Jenkins, configure your project and select allure report in post-build actions
+   * Provide path of folder where json files are generated for allure
+   * 
+   
 **Folder Structure:**
 ```
 Project
